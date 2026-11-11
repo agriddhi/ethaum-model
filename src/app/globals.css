@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --color-oat: #f7f5f0;
+  --color-mist: #f4f7fa;
+  --color-white: #ffffff;
+
+  --color-forest: #2e5a44;
+  --color-forest-deep: #23402f;
+  --color-forest-ink: #1b2f25;
+  --color-sage-soft: #a8c3a8;
+  --color-sage-mist: #c4d7d1;
+  --color-sage-wash: #e9efe9;
+
+  --color-ink: #1a1f36;
+  --color-charcoal: #2b2d42;
+  --color-slate: #718096;
+
+  --color-amber: #e6a15c;
+  --color-amber-deep: #cf8a3e;
+  --color-amber-wash: #f6e7d4;
+
+  --color-mint: #00c9a7;
+  --color-mint-deep: #00a186;
+  --color-mint-wash: #dcf7ef;
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  --shadow-card: 0 1px 2px rgba(27, 47, 37, 0.06), 0 12px 32px rgba(27, 47, 37, 0.10);
+  --shadow-float: 0 2px 4px rgba(27, 47, 37, 0.10), 0 18px 48px rgba(27, 47, 37, 0.22);
+
+  --animate-marquee: marquee 36s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-late: float 8s ease-in-out 1.2s infinite;
+  --animate-pulse-ring: pulse-ring 2.6s ease-out infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(0, 201, 167, 0.35); }
+    100% { box-shadow: 0 0 0 14px rgba(0, 201, 167, 0); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-oat);
+  color: var(--color-charcoal);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* dotted texture for dark hero */
+.bg-dotgrid {
+  background-image: radial-gradient(rgba(247, 245, 240, 0.09) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+}
+
+/* soft radial glow used behind art */
+.bg-hero-glow {
+  background:
+    radial-gradient(900px 500px at 78% 18%, rgba(0, 201, 167, 0.14), transparent 60%),
+    radial-gradient(700px 500px at 12% 85%, rgba(230, 161, 92, 0.16), transparent 60%);
+}
+
+/* thin ring for match-score dial */
+.match-dial {
+  background: conic-gradient(var(--color-mint) 0 94%, rgba(255, 255, 255, 0.12) 94% 100%);
+}
+
+::selection {
+  background: var(--color-amber);
+  color: var(--color-forest-ink);
+}
+
+/* ── print: clean artefacts (quote sheet, itinerary, recovery plan) ── */
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  section,
+  article,
+  li {
+    break-inside: avoid;
+  }
+  a[href]::after {
+    content: "";
+  }
+  .print\:block {
+    display: block !important;
+  }
+}
+
+@keyframes fade-slide {
+  from { opacity: 0; transform: translateY(12px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+.animate-fade-slide {
+  animation: fade-slide 0.45s ease both;
+}
